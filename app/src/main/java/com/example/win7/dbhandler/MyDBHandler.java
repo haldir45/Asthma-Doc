@@ -5,7 +5,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.Cursor;
 import android.content.Context;
 import android.content.ContentValues;
-import android.database.sqlite.SQLiteStatement;
 
 import com.example.win7.user.User;
 import com.example.win7.weather.Weather;
@@ -17,7 +16,7 @@ public class MyDBHandler extends SQLiteOpenHelper
 {
     // kathe fora poy kaneis allages sthn database allaxe to version
 
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 5;
     private static final String DATABASE_NAME = "AsthmaDoc.db";
     private static final String TABLE_USER = "user";
     private static final String TABLE_WEATHER = "weather";
@@ -38,7 +37,8 @@ public class MyDBHandler extends SQLiteOpenHelper
     private static final String WEATHERCOLUMN_HUMIDITY = "humidity";
     private static final String WEATHERCOLUMN_POLLUTON = "pollution";
     private static final String WEATHERCOLUMN_DEGREES = "degrees";
-    private static final String WEATHERCOLUMN_MOOD = "mood";
+    private static final String WEATHERCOLUMN_BREATH = "breath";
+    private static final String WEATHERCOLUMN_ALLERGY = "allergy";
     private static final String WEATHERCOLUMN_BEAUFORT = "beaufort";
     private static final String WEATHERCOLUMN_POLLEN = "pollen";
     private static final String WEATHERCOLUMN_DATETIME = "datetime";
@@ -66,7 +66,8 @@ public class MyDBHandler extends SQLiteOpenHelper
                 WEATHERCOLUMN_HUMIDITY + " REAL ," +
                 WEATHERCOLUMN_POLLUTON + " REAL ," +
                 WEATHERCOLUMN_DEGREES + " REAL ," +
-                WEATHERCOLUMN_MOOD + " TEXT ," +
+                WEATHERCOLUMN_BREATH + " TEXT ," +
+                WEATHERCOLUMN_ALLERGY + " TEXT ," +
                 WEATHERCOLUMN_POLLEN + " REAL ," +
                 WEATHERCOLUMN_BEAUFORT + " REAL ," +
                 WEATHERCOLUMN_DATETIME + " TEXT " +
@@ -104,7 +105,8 @@ public class MyDBHandler extends SQLiteOpenHelper
         values.put(WEATHERCOLUMN_HUMIDITY, weather.get_humidity());
         values.put(WEATHERCOLUMN_POLLUTON, weather.get_pollution());
         values.put(WEATHERCOLUMN_DEGREES, weather.get_degrees());
-        values.put(WEATHERCOLUMN_MOOD, weather.get_mood());
+        values.put(WEATHERCOLUMN_BREATH, weather.get_breath());
+        values.put(WEATHERCOLUMN_ALLERGY, weather.get_allergy());
         values.put(WEATHERCOLUMN_POLLEN, weather.get_pollen());
         values.put(WEATHERCOLUMN_BEAUFORT, weather.get_beaufort());
         values.put(WEATHERCOLUMN_DATETIME,date);
@@ -174,9 +176,10 @@ public class MyDBHandler extends SQLiteOpenHelper
             dbString += c.getString(c.getColumnIndex("humidity")) + " ";
             dbString += c.getString(c.getColumnIndex("pollution")) + " ";
             dbString += c.getString(c.getColumnIndex("degrees")) + " ";
-            dbString += c.getString(c.getColumnIndex("mood")) + " ";
-            dbString += c.getString(c.getColumnIndex("beaufort")) + " ";
+            dbString += c.getString(c.getColumnIndex("breath")) + " ";
+            dbString += c.getString(c.getColumnIndex("allergy")) + " ";
             dbString += c.getString(c.getColumnIndex("pollen")) + " ";
+            dbString += c.getString(c.getColumnIndex("beaufort")) + " ";
             dbString += c.getString(c.getColumnIndex("datetime")) + " ";
             dbString += "\n";
             c.moveToNext();
@@ -186,22 +189,21 @@ public class MyDBHandler extends SQLiteOpenHelper
         return dbString;
 
     }
-    public boolean setWeathercolumnMood(String mood) {
+    public boolean setWeathercolumnBreath(String breath) {
 
- /*
-        SQLiteDatabase db = getWritableDatabase();
-        String querry = "UPDATE " + TABLE_WEATHER + " SET " + WEATHERCOLUMN_MOOD + " = " + mood  + " WHERE " + WEATHERCOLUMN_ID
-                + " = " + "(SELECT max( " + WEATHERCOLUMN_ID + " ) FROM " + TABLE_WEATHER  + " )";
-        SQLiteStatement stmt = db.compileStatement(querry);
-        stmt.execute();
-
-
-
-        db.close();
-        */
         SQLiteDatabase db = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(WEATHERCOLUMN_MOOD, mood);
+        contentValues.put(WEATHERCOLUMN_BREATH, breath);
+        db.update(TABLE_WEATHER, contentValues, WEATHERCOLUMN_ID + " = (SELECT max( " + WEATHERCOLUMN_ID + " ) FROM " + TABLE_WEATHER + " ) ", null);
+        return true;
+
+
+    }
+    public boolean setWeathercolumnAllergy(String allergy) {
+
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(WEATHERCOLUMN_ALLERGY, allergy);
         db.update(TABLE_WEATHER, contentValues,  WEATHERCOLUMN_ID + " = (SELECT max( " + WEATHERCOLUMN_ID + " ) FROM " + TABLE_WEATHER + " ) ",null);
         return true;
 

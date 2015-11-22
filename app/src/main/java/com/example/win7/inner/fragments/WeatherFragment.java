@@ -164,7 +164,7 @@ public class WeatherFragment extends Fragment {
 
              //Inserting into TABLE_WEATHER
             Weather weather = new Weather(0,beaufort,Double.parseDouble(main.getString("humidity")),
-                    main.getInt("temp")-274,"",0);
+                    main.getInt("temp")-274,"","",0);
             dbHandler.addWeather(weather, updateOn);
             printWeatherTable();
             //dbHandler.deleteWeather();

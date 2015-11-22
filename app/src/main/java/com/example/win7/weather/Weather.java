@@ -9,19 +9,21 @@ public class Weather {
     private double _pollution;
     private double _beaufort;
     private int _degrees;
-    private String _mood;
+    private String _breath;
+    private String _allergy;
     private int _pollen;
 
     public Weather() {
     }
 
-    public Weather( double _pollution, double _beaufort ,double _humidity, int _degrees, String _mood,int _pollen) {
+    public Weather( double _pollution, double _beaufort ,double _humidity, int _degrees, String _breath,String _allergy,int _pollen) {
 
         this._pollution = _pollution;
         this._beaufort = _beaufort;
         this._humidity = _humidity;
         this._degrees = _degrees;
-        this._mood = _mood;
+        this._breath = _breath;
+        this._allergy = _allergy;
         this._pollen = _pollen;
     }
 
@@ -65,12 +67,12 @@ public class Weather {
         this._degrees = _degrees;
     }
 
-    public String get_mood() {
-        return _mood;
+    public String get_breath() {
+        return _breath;
     }
 
-    public void set_mood(String _mood) {
-        this._mood = _mood;
+    public void set_breath(String _breath) {
+        this._breath = _breath;
     }
 
     public int get_pollen() {
@@ -79,5 +81,13 @@ public class Weather {
 
     public void set_pollen(int _pollen) {
         this._pollen = _pollen;
+    }
+
+    public String get_allergy() {
+        return _allergy;
+    }
+
+    public void set_allergy(String _allergy) {
+        this._allergy = _allergy;
     }
 }

@@ -144,11 +144,11 @@ public class Fragment2 extends Fragment implements SeekBar.OnSeekBarChangeListen
 
             case R.id.breathValue:
                 Log.i("Message",String.valueOf(valueBreath.getText()));
-              dbHandler.setWeathercolumnMood(String.valueOf(valueBreath.getText()));
+              dbHandler.setWeathercolumnBreath(String.valueOf(valueBreath.getText()));
                 break;
 
             case R.id.allergyValue:
-              //  dbHandler.setWeathercolumnMood();
+                dbHandler.setWeathercolumnAllergy(String.valueOf(valueAllergy.getText()));
                 break;
 
 
