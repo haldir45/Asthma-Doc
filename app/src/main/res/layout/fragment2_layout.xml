@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/how_you_feelLT"
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/breathingTextView"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/textView"
+        android:layout_alignLeft="@+id/breathSB"
+        android:layout_alignStart="@+id/breathSB"
+        android:layout_marginTop="40dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/allergyTextView"
+        android:id="@+id/textView3"
+        android:layout_marginTop="55dp"
+        android:layout_below="@+id/breathSB"
+        android:layout_alignLeft="@+id/breathSB"
+        android:layout_alignStart="@+id/breathSB"/>
+
+    <SeekBar
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/breathSB"
+        android:layout_marginTop="62dp"
+        android:indeterminate="false"
+        android:layout_below="@+id/textView2"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView"/>
+    <!-- Seekbar's indicator for Breath-->
+    <TextView
+        android:id="@+id/breathValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/feelinglabel_TextView"
+        android:ems="2"
+        android:gravity="right|center_vertical"
+        android:textAppearance="@android:style/TextAppearance.Large"
+        android:textAlignment="center"
+        android:layout_above="@+id/breathSB"
+        android:layout_toRightOf="@+id/textView2"
+        android:layout_marginLeft="43dp"
+        android:layout_marginStart="43dp"
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView"/>
+
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/allergySB"
+        android:indeterminate="false"
+        android:layout_marginTop="49dp"
+        android:layout_below="@+id/textView3"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_alignStart="@+id/textView3"
+        android:layout_alignRight="@+id/breathSB"
+        android:layout_alignEnd="@+id/breathSB"/>
+<!--allergy Textview value indicator-->
+    <TextView
+        android:id="@+id/allergyValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/feelinglabel_TextView"
+        android:ems="2"
+        android:gravity="right|center_vertical"
+        android:textAppearance="@android:style/TextAppearance.Large"
+        android:textAlignment="center"
+        android:layout_alignTop="@+id/textView3"
+        android:layout_alignLeft="@+id/breathValue"
+        android:layout_alignStart="@+id/breathValue"
+        android:layout_alignRight="@+id/breathValue"
+        android:layout_alignEnd="@+id/breathValue"/>
+
+</RelativeLayout>

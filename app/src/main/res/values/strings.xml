@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">AsthmaDoc</string>
+    <string name="action_settings">Settings</string>
+    <string name="drawer_opened">Drawer Opened</string>
+    <string name="drawer_closed">Drawer Closed</string>
+
+    <string name="how_you_feelLT">How do you feel Today?</string>
+    <string name="breathingTextView">Breathing</string>
+    <string name="allergyTextView">Allergy</string>
+    <string name="feelinglabel_TextView">Bad</string>
+
+
+    <string name="change_city">Change city</string>
+    <string name="open_weather_maps_app_id">21e25b540a1b05d60a2db3ddb588301e</string>
+
+    <string name="weather_sunny">&#xf00d;</string>
+    <string name="weather_clear_night">&#xf02e;</string>
+    <string name="weather_foggy">&#xf014;</string>
+    <string name="weather_cloudy">&#xf013;</string>
+    <string name="weather_rainy">&#xf019;</string>
+    <string name="weather_snowy">&#xf01b;</string>
+    <string name="weather_thunder">&#xf01e;</string>
+    <string name="weather_drizzle">&#xf01c;</string>
+
+    <string name="place_not_found">Sorry, no weather data found.</string>
+
+</resources>
