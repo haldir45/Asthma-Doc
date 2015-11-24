@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.win7.asthmadoc.R;
 import com.example.win7.dbhandler.MyDBHandler;
@@ -36,17 +37,19 @@ public class Fragment4 extends Fragment {
     private RadioButton smoker;
     private RadioButton noSmoker;
 
-    private double heightD;
-    private int ageI;
+    private String heightD;
+    private String ageI;
     private String sexS;
-    boolean isSmoker ;
+    private boolean isSmokerBoolean;
+    private String isSmoker ;
 
    // private TextView printuser;
     private Button submitB;
     MyDBHandler dbHandler;
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
         View v = inflater.inflate(R.layout.fragment4_layout, container, false);
 
         surname = (EditText)v.findViewById(R.id.surnameET);
@@ -83,25 +86,49 @@ public class Fragment4 extends Fragment {
 
     //add a user to the database----prepei na perasoyme san parametro to view v
     // giati alliws den tha tin kataxwrisei san methodo toy button
-    public void addUser(View v){
+    public void addUser(View v)
+    {
 
-      validate();
-       User user = new User(surname.getText().toString(),name.getText().toString(),sexS,heightD,ageI,isSmoker);
-        dbHandler.addUser(user);
-        printUserTable(v);
+            validate();
+        if(isEmpty()){
+            Toast.makeText(getActivity(),
+                    getActivity().getString(R.string.empty_fields),
+                    Toast.LENGTH_LONG).show();
+        }else{
 
-        //tous diagrafw gia na mhn exw axrista pragmata pros to paron stin basi moy
-        dbHandler.deleteUsers();
+            User user = new User(surname.getText().toString(),name.getText().toString(),sexS,Double.parseDouble(heightD),
+                    Integer.parseInt(ageI),isSmokerBoolean);
+            dbHandler.addUser(user);
+            printUserTable(v);
+
+            //tous diagrafw gia na mhn exw axrista pragmata pros to paron stin basi moy
+            dbHandler.deleteUsers();
+        }
+
+
+
 
     }
 
 
 
-    //validate the info
-    public void validate(){
+    public boolean isEmpty()
+    {
 
-        heightD = Double.parseDouble(height.getText().toString());
-        ageI = Integer.parseInt(age.getText().toString());
+        if(surname.getText().equals("") | name.getText().equals("") | heightD.equals("")
+                | sexS.equals("nothing")| ageI.equals("")| isSmoker.equals("nothing")){
+            resetFields();
+              return true;
+        }
+
+        return false;
+    }
+    //validate the info
+    public void validate()
+    {
+
+        heightD = height.getText().toString();
+        ageI = age.getText().toString();
         sexS ="";
 
         if(male.isChecked()){
@@ -114,33 +141,40 @@ public class Fragment4 extends Fragment {
         }
 
         if(smoker.isChecked()){
-            isSmoker = true;
+            isSmokerBoolean = true;
+            isSmoker = "true";
         }else if(noSmoker.isChecked()){
-            isSmoker = false;
+            isSmokerBoolean = false;
+            isSmoker = "false";
         }else{
-            isSmoker = false;
+            isSmokerBoolean = false;
+            isSmoker = "nothing";
         }
     }
     //print database user
-    public void printUserTable(View v){
+    public void printUserTable(View v)
+    {
         String dbString = dbHandler.tableUserToString();
        // printuser.setText(dbString);
 
         //Ta fairnw sthn arxikh toys katastash
-        surname.setText("");
-        name.setText("");
-        male.setChecked(false);
-        female.setChecked(false);
-        smoker.setChecked(false);
-        noSmoker.setChecked(false);
 
 
+          resetFields();
         age.setText("");
         height.setText("");
 
         //emfanisi tou pinaka sto android Monitor
         Log.i("User", dbString);
 
+    }
+    private void resetFields(){
+        surname.setText("");
+        name.setText("");
+        male.setChecked(false);
+        female.setChecked(false);
+        smoker.setChecked(false);
+        noSmoker.setChecked(false);
     }
 
 }
