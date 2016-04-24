@@ -1,6 +1,6 @@
-A.T.E.I Thessaloniki
+The MIT License (MIT)
 
-Copyright (c) 2016 Tsantas Charalampos-George Politis 
+Copyright (c) 2016 Tsantas Charalampos-George Politis A.T.E.I Thessaloniki
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
