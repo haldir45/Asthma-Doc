@@ -7,6 +7,6 @@ The App give to the user to:
 - Check humidity, temperature and allergens levels
 Note: The app is under development.
 Disclaimer: AsthmaDoc does not intend to substitute drugs or doctor's advice in anyway.
-#####Developers:
-#####Haris Tsantas
-#####George Politis
+####Developers:
+####Haris Tsantas
+####George Politis
